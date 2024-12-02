@@ -95,6 +95,8 @@
     .feature aside {
       flex-direction: column;
       margin-bottom: 40px;
+      padding: 0;
+      margin-inline: 0;
     }
     .feature aside.sm-column-reverse{
       flex-direction: column-reverse;
