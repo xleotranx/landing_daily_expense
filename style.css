@@ -81,8 +81,35 @@
     padding: 0 40px;
   }
   @media screen and (max-width: 30rem) {
-    p br {
+
+    main{
+      padding-top: 0;
+    }
+    .feature br {
       display: none;
+    }
+    .feature header {
+      padding: 0;
+    }
+
+    .feature aside {
+      flex-direction: column;
+      margin-bottom: 40px;
+    }
+    .feature aside.sm-column-reverse{
+      flex-direction: column-reverse;
+    }
+
+    .feature aside > div {
+      flex-basis: 100%;
+    }
+
+    .feature-content {
+      padding: 0;
+    }
+
+    .feature-content h2 {
+      margin-bottom: 1rem;
     }
   }
   
