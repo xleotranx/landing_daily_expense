@@ -172,6 +172,10 @@
 
 	$('.nav-scroll-link .nav-link').on('click', function (e) {
 		e.preventDefault();
+		if ($(this).hasClass('nav-link-open')) {
+			window.open($(this).attr('href'), '_blank');
+			return;
+		}
 		const liNav = $(this).parent();
 		liNav.addClass('active');
 		liNav.siblings().removeClass('active');
