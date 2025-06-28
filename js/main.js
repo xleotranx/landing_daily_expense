@@ -184,7 +184,44 @@
 			scrollTop: $(target).offset().top - 100
 		}, 500);
 	});
+	
+	// form contact
+	$('#contactForm').submit(function(e) {
+		e.preventDefault();
+		const formData = new FormData(this);
+		const name = formData.get('name');
+		const email = formData.get('email');
+		const subject = formData.get('subject');
+		const message = formData.get('message');
 
+		// https://n8n.smartedge.vn/webhook-test/237019c4-3f47-4dc3-b3ec-122b33396008
+		const url = 'https://n8n.smartedge.vn/webhook/237019c4-3f47-4dc3-b3ec-122b33396008';
+		const data = {
+			name,
+			email,
+			subject,
+			message
+		};
+		fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(response => response.json())
+		.then(data => {
+			$('#form-message-success').removeClass('d-none');
+			$('#form-message-warning').addClass('d-none');
+			$('#contactForm')[0].reset();
+			$('#contactForm').removeClass('was-validated');
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			$('#form-message-warning').removeClass('d-none');
+			$('#form-message-success').addClass('d-none');
+			$('#contactForm').addClass('was-validated');
+		});
+	});
 
 })(jQuery);
 
