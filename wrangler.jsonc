@@ -1,4 +1,7 @@
 {
-  "name": "daily-expense",
-  "pages_build_output_dir": "./"
-}
+    "name": "daily-expense",
+    "compatibility_date": "2024-09-19",
+    "assets": {
+      "directory": "./"
+    }
+  }
