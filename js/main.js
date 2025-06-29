@@ -194,6 +194,46 @@
 		const subject = formData.get('subject');
 		const message = formData.get('message');
 
+		//add validate
+		if (!name || !email || !subject || !message) {
+			$('#form-message-warning').removeClass('d-none').text('Vui lòng điền đầy đủ thông tin');
+			$('#form-message-success').addClass('d-none');
+			return false;
+		}
+
+		// Validate email format
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email)) {
+			$('#form-message-warning').removeClass('d-none').text('Email không hợp lệ');
+			$('#form-message-success').addClass('d-none');
+			return false;
+		}
+
+		// Validate name length
+		if (name.length < 2) {
+			$('#form-message-warning').removeClass('d-none').text('Tên phải có ít nhất 2 ký tự');
+			$('#form-message-success').addClass('d-none');
+			return false;
+		}
+
+		// Validate subject length
+		if (subject.length < 5) {
+			$('#form-message-warning').removeClass('d-none').text('Chủ đề phải có ít nhất 5 ký tự');
+			$('#form-message-success').addClass('d-none');
+			return false;
+		}
+
+		// Validate message length
+		if (message.length < 10) {
+			$('#form-message-warning').removeClass('d-none').text('Tin nhắn phải có ít nhất 10 ký tự');
+			$('#form-message-success').addClass('d-none');
+			return false;
+		}
+
+		// Clear any previous warning messages
+		$('#form-message-warning').addClass('d-none');
+
+
 		// https://n8n.smartedge.vn/webhook-test/237019c4-3f47-4dc3-b3ec-122b33396008
 		const url = 'https://n8n.smartedge.vn/webhook/237019c4-3f47-4dc3-b3ec-122b33396008';
 		const data = {
